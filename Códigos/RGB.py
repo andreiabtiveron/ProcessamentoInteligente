@@ -31,36 +31,43 @@ def split_rgb_channels(img):
     r_channel, g_channel, b_channel = cv2.split(img)  # Split into RGB channels
     return r_channel, g_channel, b_channel
 
-def display_channels(r_channel, g_channel, b_channel):
+def display_colored_channels(r_channel, g_channel, b_channel):
     """
-    Displays the RGB channels using matplotlib.
+    Displays the RGB channels using their respective colors.
     
     Parameters:
         r_channel (numpy.ndarray): The red channel.
         g_channel (numpy.ndarray): The green channel.
         b_channel (numpy.ndarray): The blue channel.
     """
+    zeros = np.zeros_like(r_channel)
+
+    red_img = np.stack((r_channel, zeros, zeros), axis=2)
+    green_img = np.stack((zeros, g_channel, zeros), axis=2)
+    blue_img = np.stack((zeros, zeros, b_channel), axis=2)
+
     plt.figure(figsize=(12, 4))
     plt.subplot(1, 3, 1)
-    plt.imshow(r_channel, cmap='gray')
+    plt.imshow(red_img)
     plt.title('Red Channel')
     plt.axis('off')
 
     plt.subplot(1, 3, 2)
-    plt.imshow(g_channel, cmap='gray')
+    plt.imshow(green_img)
     plt.title('Green Channel')
     plt.axis('off')
 
     plt.subplot(1, 3, 3)
-    plt.imshow(b_channel, cmap='gray')
+    plt.imshow(blue_img)
     plt.title('Blue Channel')
     plt.axis('off')
 
     plt.tight_layout()
     plt.show()
 
-# Example usage
-image_path = 'correcaoB.jpg'  # Replace with your image path
+# Exemplo de uso
+image_path = 'correcaoB.jpg'  # Substitua pelo caminho correto da sua imagem
 rgb_image = open_image(image_path)
 r, g, b = split_rgb_channels(rgb_image)
-display_channels(r, g, b)
+display_colored_channels(r, g, b)
+
