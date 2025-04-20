@@ -13,8 +13,14 @@ def open_image(image_path):
         img (numpy.ndarray): The opened RGB image.
     """
     img = cv2.imread(image_path)  # Open the image
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert from BGR to RGB
-    return img
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # converte de BGR (blue green red) para RGB (red green blu)
+    return img                                  # pq as imagens em OpenCV leem as imagens em BGR e o matplotlib leem no formato RGB
+                                                # # Sem essa conversão:
+                                                # Se você carregar uma imagem com cv2.imread() e não converter para RGB, ela será exibida com cores erradas (distorcidas) no matplotlib.pyplot.imshow() — por exemplo:
+                                                # Céu azul pode parecer meio avermelhado.
+                                                # Áreas verdes podem parecer roxas, etc.
+
+
 
 def split_rgb_channels(img):
     """
@@ -31,7 +37,7 @@ def split_rgb_channels(img):
     r_channel, g_channel, b_channel = cv2.split(img)  # Split into RGB channels
     return r_channel, g_channel, b_channel
 
-def display_channels(r_channel, g_channel, b_channel):
+def display_channels(r_channel, g_channel, b_channel): # está dividindo a imagem em um canal de 3 cores, vermelho verde e azul
     """
     Displays the RGB channels using matplotlib.
     
@@ -62,5 +68,5 @@ def display_channels(r_channel, g_channel, b_channel):
 # Example usage
 image_path = 'correcaoB.jpg'  # Replace with your image path
 rgb_image = open_image(image_path)
-r, g, b = split_rgb_channels(rgb_image)
-display_channels(r, g, b)
+r, g, b = split_rgb_channels(rgb_image) # Separa a imagem RGB nos seus 3 canais de cor usando split_rgb_channels.
+display_channels(r, g, b) # mostra as imagens

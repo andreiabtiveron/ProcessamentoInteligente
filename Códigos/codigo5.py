@@ -75,7 +75,7 @@ kernels = [
 ]
 
 # Example usage
-image_path = 'path/to/your/image.jpg'  # Replace with your image path
+image_path = 'Figura3.jpeg'  # Replace with your image path
 rgb_image = open_image(image_path)
 
 # Apply low-pass filters
