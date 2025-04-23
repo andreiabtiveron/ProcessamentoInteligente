@@ -66,5 +66,5 @@ def apply_correction(image_path, method='factor'):
     plt.show()
 
 # 🧪 Teste: Altere o caminho e o método desejado
-image_path = 'correcaoB.jpg'  # substitua com o caminho correto
+image_path = 'Imagem.jpeg'  # substitua com o caminho correto
 apply_correction(image_path, method='factor')     # ou 'equalize' ou 'average'

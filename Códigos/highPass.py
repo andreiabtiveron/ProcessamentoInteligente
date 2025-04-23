@@ -75,7 +75,7 @@ kernels = [
 ]
 
 # Example usage
-image_path = 'correcaoB.jpg'  # Replace with your image path
+image_path = 'imagemBinaria.jpeg'  # Replace with your image path
 rgb_image = open_image(image_path)
 
 # Apply high-pass filters

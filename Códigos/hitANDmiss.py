@@ -54,47 +54,25 @@ def hit_and_miss(binary_img, kernel):
     
     return hit_and_miss_result
 
-def display_images(original, binary_img, hit_and_miss_result):
-    """
-    Displays the original, binary, and Hit-and-Miss images using matplotlib.
-    
-    Parameters:
-        original (numpy.ndarray): The original image.
-        binary_img (numpy.ndarray): The binary image.
-        hit_and_miss_result (numpy.ndarray): The result of the Hit-and-Miss transformation.
-    """
-    plt.figure(figsize=(12, 6))
-    
-    plt.subplot(1, 3, 1)
-    plt.imshow(original)
-    plt.title('Original Image')
-    plt.axis('off')
+# === USO DO SCRIPT ===
 
-    plt.subplot(1, 3, 2)
-    plt.imshow(binary_img, cmap='gray')
-    plt.title('Binary Image')
-    plt.axis('off')
-
-    plt.subplot(1, 3, 3)
-    plt.imshow(hit_and_miss_result, cmap='gray')
-    plt.title('Hit and Miss Result')
-    plt.axis('off')
-
-    plt.tight_layout()
-    plt.show()
-
-# Example usage
-image_path = 'correcaoB.jpg'  # Replace with your image path
+image_path = 'bordaRealceB1.jpg'  # Caminho da imagem
 rgb_image = open_image(image_path)
 binary_image = binarize_image(rgb_image)
 
-# Define a simple structuring element (for example, a 3x3 cross)
+# Define um elemento estruturante (cruz 3x3)
 kernel = np.array([[0, 1, 0],
                    [1, 1, 1],
                    [0, 1, 0]], dtype=np.uint8)
 
-# Apply Hit-and-Miss transformation
+# Aplica Hit-and-Miss (caso ainda queira usar o resultado depois)
 hit_miss_result = hit_and_miss(binary_image, kernel)
 
-# Display all images
-display_images(rgb_image, binary_image, hit_miss_result)
+# Mostra só a imagem binária
+plt.imshow(binary_image, cmap='gray')
+plt.title('Binary Image')
+plt.axis('off')
+plt.show()
+
+# Salva a imagem binária
+cv2.imwrite('imagem_binaria.png', binary_image)
