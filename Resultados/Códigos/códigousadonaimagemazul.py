@@ -17,17 +17,17 @@ def display_image(title, image):
     plt.axis('off')
     plt.show()
 
-# 1️⃣ Redução do canal azul com fator
+# Redução do canal azul com fator
 def correct_blue_with_factor(r, g, b, factor=0.7):
     b_corrected = np.clip(b * factor, 0, 255).astype(np.uint8)
     return cv2.merge([r, g, b_corrected])
 
-# 2️⃣ Equalização do canal azul
+# Equalização do canal azul
 def equalize_blue_channel(r, g, b):
     b_eq = cv2.equalizeHist(b)
     return cv2.merge([r, g, b_eq])
 
-# 3️⃣ Substituir canal azul pela média de R e G
+# Substituir canal azul pela média de R e G
 def replace_blue_with_avg(r, g, b):
     b_avg = ((r.astype(np.float32) + g.astype(np.float32)) / 2).astype(np.uint8)
     return cv2.merge([r, g, b_avg])
@@ -65,6 +65,6 @@ def apply_correction(image_path, method='factor'):
     plt.tight_layout()
     plt.show()
 
-# 🧪 Teste: Altere o caminho e o método desejado
+
 image_path = 'Imagem.jpeg'  # substitua com o caminho correto
 apply_correction(image_path, method='factor')     # ou 'equalize' ou 'average'
